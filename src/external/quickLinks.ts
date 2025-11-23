@@ -1,0 +1,1 @@
+export const callLink = "tel:+233550382008";
