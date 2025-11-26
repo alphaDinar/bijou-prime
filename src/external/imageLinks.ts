@@ -83,7 +83,7 @@ export const galleryList = [
   "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5c06656fb7a821a944f975af_BH-12.jpg",
   "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5bbce4f5b50949486dad417c_13.jpg",
   "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5be5d7e6442f1fb33123fd5d_WhatsApp%20Image%202018-11-09%20at%2009.25.28.jpeg",
-  
+
 ]
 
 export const eventImages = [

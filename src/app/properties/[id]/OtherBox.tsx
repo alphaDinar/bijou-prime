@@ -2,15 +2,18 @@ import { propertyList } from "@/src/external/property";
 import { Button } from "@heroui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { FC } from "react";
 
-const PropertyBox = () => {
-
+type OtherBoxProps = {
+  oddProperty: string;
+}
+const OtherBox: FC<OtherBoxProps> = ({ oddProperty }) => {
   return (
-    <section id="properties" className="flex flex-col items-center w-full box gap-10 mt-20 sm-screen:mt-5">
-      <span className="heading text-primary text-6xl sm-screen:text-4xl">Our Properties</span>
+    <section className="flex flex-col items-center w-full box gap-10 mt-20 sm-screen:mt-5">
+      <span className="text-primary text-xl sm-screen:text-xl">You May Also Like These Other Bijou Homes</span>
 
-      <section className="grid grid-cols-4 gap-10 w-full md-screen:grid-cols-2 sm-screen:grid-cols-1">
-        {propertyList.map((property, index) => (
+      <section className="grid grid-cols-3 gap-10 w-full md-screen:grid-cols-2 sm-screen:grid-cols-1">
+        {propertyList.filter((property) => property.name.toLowerCase() !== oddProperty.toLowerCase()).map((property, index) => (
           <Link href={`/properties/${property.name}`}
             key={index} className={`group bg-[#f5f5f5] flex flex-col justify-between gap-2 relative overflow-hidden ${property.unitsLeft === 0 ? "opacity-70" : "opacity-100"}`}>
             <div className="h-56 z-50 relative">
@@ -56,4 +59,4 @@ const PropertyBox = () => {
   );
 }
 
-export default PropertyBox;
+export default OtherBox;

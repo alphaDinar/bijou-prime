@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const BlogBox = () => {
   const blogList = [
-    { tag: "Shelter Afrique Visits Bijou Homes", href: "", img: "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5ce6c30b455108a4eb748900_IMG_4611-min.JPG", },
-    { tag: "Bijou Homes Takes on Obuasi & Kumasi", href: "", img: "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5d52f2f06f0ecbc5b5c7a565__MG_9985-min.jpg" },
-    { tag: "Bijou Homes Celebrates First Resident", href: "", img: "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5d2eded9433de703cdfae85a_IMG_9559.jpg" }
+    { tag: "Shelter Afrique Visits Bijou Homes", href: "https://www.instagram.com/bijouhomes/", img: "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5ce6c30b455108a4eb748900_IMG_4611-min.JPG", },
+    { tag: "Bijou Homes Takes on Obuasi & Kumasi", href: "https://www.instagram.com/bijouhomes/", img: "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5d52f2f06f0ecbc5b5c7a565__MG_9985-min.jpg" },
+    { tag: "Bijou Homes Celebrates First Resident", href: "https://www.instagram.com/bijouhomes/", img: "https://cdn.prod.website-files.com/5b7fc1dce825746280869575/5d2eded9433de703cdfae85a_IMG_9559.jpg" }
   ]
 
   return (
@@ -32,7 +32,7 @@ const BlogBox = () => {
         ))}
       </section>
 
-      <Button as={Link} href="/blog" radius="none" variant="bordered" className="mx-auto flex relative group border w-max sm-screen:w-full text-primary border-primary sm-screen:py-3">
+      <Button as={Link} href="https://www.instagram.com/bijouhomes/" radius="none" variant="bordered" className="mx-auto flex relative group border w-max sm-screen:w-full text-primary border-primary sm-screen:py-3">
         <span className="flex z-20 uppercase text-[0.7rem] font-semibold group-hover:text-white">see all blogs</span>
         <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-primary group-hover:w-full transition-all"></div>
       </Button>

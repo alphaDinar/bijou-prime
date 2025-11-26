@@ -1,22 +1,81 @@
+"use client";
 import Image from "next/image";
-import { ReactNode } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { headBoxImages } from "@/src/external/imageLinks";
 import { Button } from "@heroui/button";
 import Link from "next/link";
-
+import useEmblaCarousel from "embla-carousel-react";
 
 interface HeadBoxProps {
   children?: ReactNode;
 }
-const HeadBox = ({ children }: HeadBoxProps) => {
-  return (
-    <section className="relative bg-blue-300 h-[100vh] w-full flex justify-center items-center">
-      <article className="absolute top-0 left-0 z-50 bg-black w-full h-full">
-        <Image src={headBoxImages[0]} alt="" fill objectFit="cover" />
-        <article className="bg-black absolute top-0 left-0 w-full h-full opacity-50">
 
-        </article>
-      </article>
+const HeadBox = ({ children }: HeadBoxProps) => {
+  const [emblaRef, embla] = useEmblaCarousel({ loop: true });
+  const [selected, setSelected] = useState(0);
+
+  const autoplayTimer = useRef<NodeJS.Timeout | null>(null);
+
+  const play = useCallback(() => {
+    if (!embla) return;
+    autoplayTimer.current = setTimeout(() => {
+      embla.scrollNext();
+      play();
+    }, 3000);
+  }, [embla, 3000]);
+
+  const stop = useCallback(() => {
+    if (autoplayTimer.current) clearTimeout(autoplayTimer.current);
+  }, []);
+
+  const onSelect = useCallback(() => {
+    if (!embla) return;
+    setSelected(embla.selectedScrollSnap());
+  }, [embla]);
+
+  useEffect(() => {
+    if (!embla) return;
+
+    embla.on("select", onSelect);
+
+    play();
+
+    return () => stop();
+  }, [embla, play, stop, onSelect]);
+
+  return (
+    <section className="relative h-[100vh] w-full flex justify-center items-center">
+      <div className="absolute top-0 left-0 w-full h-full z-50">
+        <div className="overflow-hidden h-full" ref={emblaRef}>
+          <div className="flex h-full">
+            {headBoxImages.map((img, index) => (
+              <div key={index} className="flex-[0_0_100%] relative h-full">
+                <Image
+                  src={img}
+                  alt=""
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+                <article className="absolute inset-0 bg-black opacity-50"></article>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Dots */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-50">
+          {headBoxImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => embla?.scrollTo(index)}
+              className={`h-3  cursor-pointer rounded-full transition-all ${selected === index ? "w-5 bg-white" : "w-3 bg-white/50"
+                }`}
+            ></button>
+          ))}
+        </div>
+      </div>
+
+
       {children}
 
 
@@ -34,7 +93,7 @@ const HeadBox = ({ children }: HeadBoxProps) => {
           <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-secondary group-hover:w-full transition-all"></div>
         </Button>
       </section>
-    </section>
+    </section >
   );
 }
 

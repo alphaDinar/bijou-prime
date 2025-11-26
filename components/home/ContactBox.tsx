@@ -1,6 +1,6 @@
 "use client";
 import { Input, Textarea } from "@heroui/input";
-import { Select, SelectItem } from "@heroui/react";
+import { addToast, Select, SelectItem } from "@heroui/react";
 import Image from "next/image";
 import { MdOutlinePhoneInTalk } from "react-icons/md";
 import { MdOutlineMail } from "react-icons/md";
@@ -8,15 +8,19 @@ import { FaWhatsapp } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import Link from "next/link";
 import { Button } from "@heroui/button";
-import { useState } from "react";
+import { FC, useState } from "react";
+import { sendSMS } from "@/src/external/sms";
+import { callLink, mailLink, mapLink } from "@/src/external/quickLinks";
 
-
-const ContactBox = () => {
+type ContactBoxProps = {
+  propertyType?: string;
+}
+const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
   const channelList = [
-    { tag: "phone number", value: "+233 550 382 008", logo: <MdOutlinePhoneInTalk />, href: "" },
-    { tag: "email address", value: "info@bijouhomesgh.com", logo: <MdOutlineMail />, href: "" },
+    { tag: "phone number", value: "+233 550 382 008", logo: <MdOutlinePhoneInTalk />, href: callLink },
+    { tag: "email address", value: "info@bijouhomesgh.com", logo: <MdOutlineMail />, href: mailLink },
     { tag: "whatsApp", value: "+233 550 382 008", logo: <FaWhatsapp />, href: "https://wa.me/+233550382008" },
-    { tag: "Location", value: "Oyibi Accra-Ghana", logo: <IoLocationOutline />, href: "" }
+    { tag: "Location", value: "Oyibi Accra-Ghana", logo: <IoLocationOutline />, href: mapLink }
   ]
 
   const propertyList = [
@@ -25,12 +29,49 @@ const ContactBox = () => {
     { tag: "jade", value: "2 Bedroom Semi-detached", img: "https://res.cloudinary.com/dvnemzw0z/image/upload/v1763905361/bijou/BH-FNB-32_gtrts6.jpg" }
   ]
 
-  const [selectedPropertyType, setSelectedPropertyType] = useState<string>("");
+  const [selectedPropertyType, setSelectedPropertyType] = useState<string>(propertyType ? propertyType : "");
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [message, setMessage] = useState("");
+
+
+  const registerCustomer = async () => {
+    const messageData = [
+      "New Inquiry",
+      "-----------------------------",
+      `Name : ${name}`,
+      `Email : ${email}`,
+      `Phone Number : ${phoneNumber}`,
+      `Interested In : ${selectedPropertyType ? selectedPropertyType : "general"}`,
+      `message : ${message}`,
+    ];
+
+    const finalMessage = messageData.join("\n");
+
+    sendSMS("0558420368", finalMessage);
+    addToast({
+      title: "Thank you for registering, will we be in touch soon.",
+      variant: "solid",
+      radius: "none",
+      color: "primary"
+    });
+
+    setName("");
+    setEmail("");
+    setPhoneNumber("");
+    setSelectedPropertyType("");
+    setMessage("");
+  }
 
   return (
-    <section className="min-h-[100vh]  bg-white py-20 box grid grid-cols-2 gap-16 md-screen:grid-cols-1 md-screen:gap-10 sm-screen:py-10 sm-screen:gap-6">
+    <section id="contact-us" className="min-h-[100vh] bg-water py-20 box grid grid-cols-2 gap-16 md-screen:grid-cols-1 md-screen:gap-10 sm-screen:py-8 sm-screen:gap-6">
       <section className="flex gap-3 md-screen:flex-col">
-        <section className="bg-white grid p-10 gap-5 flex-1 shadow-md sm-screen:p-5">
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          registerCustomer();
+        }} className="bg-white grid p-10 gap-5 flex-1 shadow-md sm-screen:p-5">
           <header className="grid text-gray-600">
             <span className="heading text-3xl">Register You Interest</span>
             <span>
@@ -49,22 +90,22 @@ const ContactBox = () => {
           <section className="grid gap-2">
             <div>
               <span className="text-gray-500 uppercase text-[0.75rem] font-bold">name</span>
-              <Input radius="none" variant="bordered" className="border-primary border" color="primary" placeholder="John Doe" />
+              <Input radius="none" value={name} onChange={(e) => setName(e.target.value)} isRequired variant="bordered" className="border-primary border" color="primary" placeholder="John Doe" />
             </div>
 
             <div>
               <span className="text-gray-500 uppercase text-[0.75rem] font-bold">Email</span>
-              <Input radius="none" variant="bordered" className="border-primary border" color="primary" placeholder="example@gmail.com" />
+              <Input radius="none" type="email" value={email} onChange={(e) => setEmail(e.target.value)} isRequired variant="bordered" className="border-primary border" color="primary" placeholder="example@gmail.com" />
             </div>
 
             <div>
               <span className="text-gray-500 uppercase text-[0.75rem] font-bold">Phone Number</span>
-              <Input radius="none" variant="bordered" className="border-primary border" color="primary" placeholder="" />
+              <Input radius="none" minLength={10} value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} isRequired variant="bordered" className="border-primary border" color="primary" placeholder="" />
             </div>
 
             <div>
               <span className="text-gray-500 uppercase text-[0.75rem] font-bold">Interested In</span>
-              <Select variant="bordered" value={selectedPropertyType} onChange={(e) => {
+              <Select defaultSelectedKeys={propertyType ? [propertyType] : []} variant="bordered" value={selectedPropertyType} onChange={(e) => {
                 setSelectedPropertyType(e.target.value);
               }} radius="none" className="border border-primary" color="primary" placeholder="Select Property Type">
                 {propertyList.map((property) => (
@@ -75,12 +116,12 @@ const ContactBox = () => {
 
             <div>
               <span className="text-gray-500 uppercase text-[0.75rem] font-bold">Questions OR Comments</span>
-              <Textarea radius="none" type="textarea" variant="bordered" className="border-primary border" color="primary" placeholder="" />
+              <Textarea radius="none" value={message} onChange={(e) => setMessage(e.target.value)} type="textarea" variant="bordered" className="border-primary border" color="primary" placeholder="" />
             </div>
           </section>
 
-          <Button color="primary" className="uppercase text-[0.9rem] font-bold" radius="none">Submit Request</Button>
-        </section>
+          <Button color="primary" type="submit" className="uppercase text-[0.9rem] font-bold" radius="none">Submit Request</Button>
+        </form>
         <section className="flex flex-col gap-2 md-screen:hidden">
           {propertyList.map((property, index) => (
             <div className={`w-24 h-24 relative ${selectedPropertyType === property.value ? "border-3 border-secondary" : "flex"}`} key={index}>
@@ -97,7 +138,7 @@ const ContactBox = () => {
 
         <section className=" grid grid-cols-2 gap-4 text-gray-300 sm-screen:grid-cols-1">
           {channelList.map((channel, index) => (
-            <Link href={channel.href} key={index} className="flex flex-col justify-center border-l-4 border-l-primary transition-all items-center p-4 hover:bg-primary">
+            <Link href={channel.href} target="_blank" key={index} className="flex flex-col justify-center border-l-4 border-l-primary transition-all items-center p-4 hover:bg-primary">
               <article className="text-4xl">
                 {channel.logo}
               </article>

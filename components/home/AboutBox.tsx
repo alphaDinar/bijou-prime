@@ -1,4 +1,5 @@
 import { Button } from "@heroui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 const AboutBox = () => {
@@ -22,8 +23,8 @@ const AboutBox = () => {
           <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-primary group-hover:w-full transition-all"></div>
         </Button>
       </section>
-      <section className="bg-primary sm-screen:h-72">
-
+      <section className="h-80 relative md-screen:h-72">
+        <Image alt="" fill objectFit="cover" src={"https://res.cloudinary.com/dvnemzw0z/image/upload/v1758566871/bijou/BH-FNB-67_fxujbq.jpg"} />
       </section>
     </section>
   );

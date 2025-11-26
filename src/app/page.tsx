@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <section className="grid gap-20 sm-screen:gap-10">
       <section>
-        <HeadBox children={<TopNav />} />
+        <HeadBox  />
         <StatBox />
       </section>
 

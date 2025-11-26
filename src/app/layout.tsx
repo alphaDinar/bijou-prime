@@ -34,8 +34,8 @@ export default function RootLayout({
         <Providers
           themeProps={{ attribute: "class", defaultTheme: "light" }}
         >
-          <section>
-            {/* <TopNav /> */}
+          <section className="relative">
+            <TopNav />
             {children}
           </section>
         </Providers>

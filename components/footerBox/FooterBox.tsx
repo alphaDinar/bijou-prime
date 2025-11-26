@@ -15,6 +15,7 @@ const FooterBox = () => {
         { tag: "about us", href: "/about-us" },
         { tag: "gallery", href: "/gallery" },
         { tag: "contact us", href: "/contact-us" },
+        { tag: "privacy policy", href: "/privacy" }
       ]
     },
     {
@@ -36,10 +37,10 @@ const FooterBox = () => {
   ]
 
   return (
-    <section className="box flex gap-20 py-20 justify-between flex-wrap md-screen:justify-around sm-screen:flex-col sm-screen:gap-5 sm-screen:py-10">
-      <div className="relative w-28 h-18 sm-screen:h-16 sm-screen:w-24">
+    <section className="box flex gap-20 py-16 justify-between flex-wrap md-screen:justify-around sm-screen:flex-col sm-screen:gap-5 sm-screen:py-10">
+      <Link href={'/'} className="relative w-28 h-18 sm-screen:h-16 sm-screen:w-24">
         <Image src={logo} objectFit="contain" alt="" fill />
-      </div>
+      </Link>
 
       <section className="flex gap-20 sm-screen:gap-5 sm-screen:flex-col">
         {blockList.map((block, index) => (

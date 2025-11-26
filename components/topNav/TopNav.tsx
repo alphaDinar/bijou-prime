@@ -4,7 +4,7 @@ import { Button } from "@heroui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -17,16 +17,16 @@ const TopNav = () => {
 
   const [navToggled, setNavToggled] = useState(false);
 
-  const toggleNav = ()=>{
+  const toggleNav = () => {
     setNavToggled(!navToggled)
   }
 
   const navLinks = [
     { tag: "home", href: "/" },
     { tag: "about us", href: "/about-us" },
-    { tag: "properties", href: "/properties" },
+    { tag: "properties", href: "/#properties" },
     { tag: "gallery", href: "/gallery" },
-    { tag: "contact us", href: "/contact-us" },
+    { tag: "contact us", href: "/#contact-us" },
   ]
 
   const socialLinks = [
@@ -36,12 +36,16 @@ const TopNav = () => {
     { tag: "linkedin", icon: <FaLinkedinIn />, href: "https://www.linkedin.com/company/bijou-homes-ghana/?viewAsMember=true" },
   ]
 
+  useEffect(() => {
+    setNavToggled(false);
+  }, [pathname])
+
   return (
     <section className="flex box w-full z-[1000] items-center justify-between bg-[#fbfbfb] py-1 absolute top-4 tab-screen:flex-col tab-screen:gap-2 tab-screen:py-4 tab-screen:top-0 sm-screen:gap-4">
       <section className="flex justify-between items-center sm-screen:w-full">
-        <div className="relative w-28 h-18 sm-screen:h-16 sm-screen:w-24">
+        <Link href={"/"} className="relative w-28 h-18 sm-screen:h-16 sm-screen:w-24">
           <Image src={logo} objectFit="contain" alt="" fill />
-        </div>
+        </Link>
 
         <Button onPress={toggleNav} isIconOnly variant="bordered" color="primary" className="hidden sm-screen:flex">
           <FiMenu size={25} />
@@ -50,9 +54,9 @@ const TopNav = () => {
 
 
 
-      <article className={`flex gap-2 z-[2000] sm-screen:fixed sm-screen:flex-col  sm-screen:bg-primary sm-screen:h-full sm-screen:w-full sm-screen:top-0 sm-screen:p-10 transition-all ${navToggled ? "sm-screen:right-0" : "sm-screen:-right-full" }`}>
+      <article className={`flex gap-2 z-[2000] sm-screen:fixed sm-screen:flex-col  sm-screen:bg-primary sm-screen:h-full sm-screen:w-full sm-screen:top-0 sm-screen:p-10 transition-all ${navToggled ? "sm-screen:right-0" : "sm-screen:-right-full"}`}>
         <IoCloseOutline onClick={toggleNav} className="hidden sm-screen:flex absolute top-6 right-6 text-[2rem] text-white" />
-        
+
         {navLinks.map((link, index) => (
           <Link
             key={index}
