@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Button } from "@heroui/button";
 import { FC, useState } from "react";
 import { sendSMS } from "@/src/external/sms";
-import { callLink, mailLink, mapLink } from "@/src/external/quickLinks";
+import { adminContact, callLink, mailLink, mapLink } from "@/src/external/quickLinks";
 
 type ContactBoxProps = {
   propertyType?: string;
@@ -50,7 +50,7 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
 
     const finalMessage = messageData.join("\n");
 
-    sendSMS("0558420368", finalMessage);
+    sendSMS(adminContact, finalMessage);
     addToast({
       title: "Thank you for registering, will we be in touch soon.",
       variant: "solid",

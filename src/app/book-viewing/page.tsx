@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Button } from "@heroui/button";
 import { FC, useState } from "react";
 import { sendSMS } from "@/src/external/sms";
-import { callLink, mapLink } from "@/src/external/quickLinks";
+import { adminContact, callLink, mapLink } from "@/src/external/quickLinks";
 import FooterBox from "@/components/footerBox/FooterBox";
 
 
@@ -49,7 +49,7 @@ const VisitBox = () => {
 
     const finalMessage = messageData.join("\n");
 
-    sendSMS("0558420368", finalMessage);
+    sendSMS(adminContact, finalMessage);
     addToast({
       title: "Thank you, we will respond to your request soon.",
       variant: "solid",
