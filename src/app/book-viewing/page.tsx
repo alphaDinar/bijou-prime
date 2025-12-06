@@ -166,7 +166,7 @@ const VisitBox = () => {
           </section>
 
           <section className="flex-1">
-            <iframe className="h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.2531362453183!2d-0.10123142564421984!3d5.819880830941097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9bf5e49b2f29%3A0xa4ee42257f714fe!2sBijou%20Homes%20Ghana!5e0!3m2!1sen!2sgh!4v1763906508482!5m2!1sen!2sgh"
+            <iframe className="h-full" title="viewingMapBox" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.2531362453183!2d-0.10123142564421984!3d5.819880830941097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9bf5e49b2f29%3A0xa4ee42257f714fe!2sBijou%20Homes%20Ghana!5e0!3m2!1sen!2sgh!4v1763906508482!5m2!1sen!2sgh"
               width="100%"
               loading="lazy" referrerPolicy="no-referrer-when-downgrade">
             </iframe>

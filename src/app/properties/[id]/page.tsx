@@ -19,7 +19,7 @@ interface PageProps {
   };
 }
 
-const ViewProperty = async () => {
+const ViewProperty = () => {
   const params = useParams();
   const id = params.id;
   // const { id } = await params;
