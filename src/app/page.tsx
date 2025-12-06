@@ -10,7 +10,6 @@ import PropertyBox from "@/components/home/PropertyBox";
 import SkillBox from "@/components/home/SkillBox";
 import StatBox from "@/components/home/StatBox";
 import PropertyModal from "@/components/propertyModal/PropertyModal";
-import TopNav from "@/components/topNav/TopNav";
 
 const Home = () => {
   return (

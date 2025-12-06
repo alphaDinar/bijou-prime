@@ -1,10 +1,10 @@
+"use client";
 import { propertyList } from "@/src/external/property";
 import { Button } from "@heroui/button";
 import Image from "next/image";
 import Link from "next/link";
 
 const PropertyBox = () => {
-
   return (
     <section id="properties" className="flex flex-col items-center w-full box gap-10 mt-20 sm-screen:mt-5">
       <span className="heading text-primary text-6xl sm-screen:text-4xl">Our Properties</span>

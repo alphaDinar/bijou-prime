@@ -1,3 +1,4 @@
+"use client";
 import { callLink } from "@/src/external/quickLinks";
 import { Button } from "@heroui/button";
 import Link from "next/link";

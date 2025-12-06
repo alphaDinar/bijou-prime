@@ -80,10 +80,10 @@ const AboutUs = () => {
       <section className="w-full grid grid-cols-2 gap-10 box mt-20 items-center sm-screen:grid-cols-1 sm-screen:gap-0">
         <section className="flex flex-col gap-10">
           <article className="grid">
-          <span className="heading text-4xl text-primary">Our Master Plan</span>
-          <span>
-            {"Bijou Homes is a gated residential community of 112 elegant and affordable homes. It is a first class urban development with well-planned infrastructure and amenities in a secure and children friendly community."}
-          </span>
+            <span className="heading text-4xl text-primary">Our Master Plan</span>
+            <span>
+              {"Bijou Homes is a gated residential community of 112 elegant and affordable homes. It is a first class urban development with well-planned infrastructure and amenities in a secure and children friendly community."}
+            </span>
           </article>
 
           <section>
@@ -96,14 +96,14 @@ const AboutUs = () => {
               <span className="sm-screen:hidden">Expandable</span>
             </header>
 
-            {propertyList.map((property)=>(
+            {propertyList.map((property) => (
               <section key={property.name} className="grid grid-cols-6 [&>*]:py-2 [&>*]:px-1 [&>*]:border [&>*]:border-gray-300 sm-screen:text-[0.8rem] sm-screen:grid-cols-5">
-                 <span>{property.name}</span>
-              <span>{property.bedrooms}</span>
-              <span>{property.floorSpace}</span>
-              <span>{property.plotSize}</span>
-              <span>{property.units}</span>
-              <span className="sm-screen:hidden">To {property.expandableTo}</span>
+                <span>{property.name}</span>
+                <span>{property.bedrooms}</span>
+                <span>{property.floorSpace}</span>
+                <span>{property.plotSize}</span>
+                <span>{property.units}</span>
+                <span className="sm-screen:hidden">To {property.expandableTo}</span>
               </section>
             ))}
           </section>
