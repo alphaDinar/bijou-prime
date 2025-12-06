@@ -39,9 +39,7 @@ export default function BijouHomesPrivacyPolicy(): JSX.Element {
           <section id="introduction">
             <h2>Introduction</h2>
             <p>
-              Bijou Homes ("we", "our", "us") respects your privacy and is committed to protecting your personal
-              data. This Privacy Policy explains how we collect, use, store and share your information when you use
-              our website, mobile applications and services (collectively, the "Services").
+              {'Bijou Homes ("we", "our", "us") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, store and share your information when you use our website, mobile applications and services (collectively, the "Services").'}
             </p>
           </section>
 
@@ -160,7 +158,7 @@ export default function BijouHomesPrivacyPolicy(): JSX.Element {
           </section>
 
           <section id="children">
-            <h2>Children's privacy</h2>
+            <h2>{"Children's privacy"}</h2>
             <p>
               Our Services are not directed to children under the age of 16. We do not knowingly collect personal
               information from children. If you believe we have collected data from a child, please contact us so we can
@@ -171,8 +169,7 @@ export default function BijouHomesPrivacyPolicy(): JSX.Element {
           <section id="updates">
             <h2>Changes to this policy</h2>
             <p>
-              We may update this Privacy Policy from time to time. When we make changes, we will update the "Last
-              updated" date above and, where required, provide notice of material changes.
+              {"We may update this Privacy Policy from time to time. When we make changes, we will update the 'Last updated' date above and, where required, provide notice of material changes."}
             </p>
           </section>
 
