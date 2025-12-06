@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Modal, ModalContent, ModalBody, useDisclosure, Button } from "@heroui/react";
+import { Modal, ModalContent, ModalBody, useDisclosure } from "@heroui/modal";
+import { Button } from "@heroui/button";
 import Image from "next/image";
 import { MdClose } from "react-icons/md";
 

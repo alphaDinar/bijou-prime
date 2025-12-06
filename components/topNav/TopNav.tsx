@@ -1,6 +1,6 @@
 "use client";
 import { logo } from "@/src/external/imageLinks";
-import { Button } from "@heroui/react";
+import { Button } from "@heroui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
