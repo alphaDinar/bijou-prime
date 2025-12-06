@@ -44,8 +44,8 @@ const HeadBox = ({ children }: HeadBoxProps) => {
   }, [embla, play, stop, onSelect]);
 
   return (
-    <section className="relative h-[100vh] w-full flex justify-center items-center">
-      <div className="absolute top-0 left-0 w-full h-full z-50">
+    <section className="relative h-[100vh] w-full flex justify-center items-center sm-screen:h-[80vh]">
+      <div className="absolute top-0 left-0 w-full h-full">
         <div className="overflow-hidden h-full" ref={emblaRef}>
           <div className="flex h-full">
             {headBoxImages.map((img, index) => (
@@ -79,7 +79,7 @@ const HeadBox = ({ children }: HeadBoxProps) => {
       {children}
 
 
-      <section className="z-100 flex flex-col items-center text-center gap-6 sm-screen:gap-3">
+      <section className="z-20 flex flex-col items-center text-center gap-6 sm-screen:gap-3">
         <section className="text-white flex flex-col items-center gap-1 sm-screen:gap-1">
           <span className="text-3xl sm-screen:text-xl">Welcome To</span>
 

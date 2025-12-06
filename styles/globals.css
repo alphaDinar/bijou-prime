@@ -50,6 +50,14 @@ body>* ::-webkit-scrollbar-thumb {
   clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%);
 }
 
+.over {
+  z-index: 2000;
+}
+
+.over>* {
+  z-index: 2000;
+}
+
 @media all and (max-width:1050px) {
   :root {
     --px: 7%

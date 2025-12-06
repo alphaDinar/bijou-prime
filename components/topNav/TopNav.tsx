@@ -1,6 +1,6 @@
 "use client";
 import { logo } from "@/src/external/imageLinks";
-import { Button } from "@heroui/button";
+import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -41,7 +41,7 @@ const TopNav = () => {
   }, [pathname])
 
   return (
-    <section className="flex box w-full z-[1000] items-center justify-between bg-[#fbfbfb] py-1 absolute top-4 tab-screen:flex-col tab-screen:gap-2 tab-screen:py-4 tab-screen:top-0 sm-screen:gap-4">
+    <section className="flex box w-full items-center justify-between bg-[#fbfbfb] py-4 tab-screen:flex-col tab-screen:gap-2 tab-screen:py-4 sm-screen:gap-4">
       <section className="flex justify-between items-center sm-screen:w-full">
         <Link href={"/"} className="relative w-28 h-18 sm-screen:h-16 sm-screen:w-24">
           <Image src={logo} objectFit="contain" alt="" fill />

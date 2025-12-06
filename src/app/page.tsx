@@ -9,13 +9,15 @@ import PlanBox from "@/components/home/PlanBox";
 import PropertyBox from "@/components/home/PropertyBox";
 import SkillBox from "@/components/home/SkillBox";
 import StatBox from "@/components/home/StatBox";
+import PropertyModal from "@/components/propertyModal/PropertyModal";
 import TopNav from "@/components/topNav/TopNav";
 
 const Home = () => {
   return (
     <section className="grid gap-20 sm-screen:gap-10">
+      <PropertyModal />
       <section>
-        <HeadBox  />
+        <HeadBox />
         <StatBox />
       </section>
 
