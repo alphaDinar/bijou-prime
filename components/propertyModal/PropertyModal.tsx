@@ -93,7 +93,7 @@ const PropertyModal = () => {
                   className="flex m-auto relative group border w-max text-primary border-primary sm-screen:mt-4 sm-screen:mx-0 sm-screen:px-6 sm-screen:py-3"
                 >
                   <span className="flex z-20 text-primary uppercase text-[0.8rem] font-extrabold group-hover:text-white">
-                    Foreclosed Properties
+                    Other Properties For Sale
                   </span>
                   <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-primary group-hover:w-full transition-all"></div>
                 </Button>
