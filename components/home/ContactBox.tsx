@@ -11,6 +11,7 @@ import { Button } from "@heroui/button";
 import { FC, useState } from "react";
 import { sendSMS } from "@/src/external/sms";
 import { adminContact, callLink, mailLink, mapLink } from "@/src/external/quickLinks";
+import { trackLead } from "@/src/lib/googleAds";
 
 type ContactBoxProps = {
   propertyType?: string;
@@ -60,6 +61,7 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
     });
     if (res.ok) {
       console.log(res.json());
+      trackLead();
       addToast({
         title: "Thank you for registering, will we be in touch soon.",
         variant: "solid",
@@ -78,7 +80,6 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
       console.log(data);
       setFormLoading(false);
     }
-    // sendSMS(adminContact, finalMessage);
   }
 
   return (

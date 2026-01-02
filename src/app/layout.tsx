@@ -3,6 +3,7 @@ import { Metadata, Viewport } from "next";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import TopNav from "@/components/topNav/TopNav";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,22 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17199578214"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17199578214');
+          `}
+        </Script>
+      </head>
       <body>
         <Providers
           themeProps={{ attribute: "class", defaultTheme: "light" }}

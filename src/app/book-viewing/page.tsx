@@ -12,6 +12,7 @@ import { FC, useState } from "react";
 import { sendSMS } from "@/src/external/sms";
 import { adminContact, callLink, mapLink } from "@/src/external/quickLinks";
 import FooterBox from "@/components/footerBox/FooterBox";
+import { trackLead } from "@/src/lib/googleAds";
 
 
 const VisitBox = () => {
@@ -35,6 +36,8 @@ const VisitBox = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
+  const [formLoading, setFormLoading] = useState(false);
+
 
   const requestViewing = async () => {
     const messageData = [
@@ -49,19 +52,47 @@ const VisitBox = () => {
 
     const finalMessage = messageData.join("\n");
 
-    sendSMS(adminContact, finalMessage);
-    addToast({
-      title: "Thank you, we will respond to your request soon.",
-      variant: "solid",
-      radius: "none",
-      color: "primary"
-    });
+    const requestViewing = async () => {
+      const messageData = [
+        "New Viewing Request",
+        "-----------------------------",
+        `Name : ${name}`,
+        `Email : ${email}`,
+        `Phone Number : ${phoneNumber}`,
+        `Interested In : ${selectedPropertyType ? selectedPropertyType : "general"}`,
+        `message : ${message}`,
+      ];
 
-    setName("");
-    setEmail("");
-    setPhoneNumber("");
-    setSelectedPropertyType("");
-    setMessage("");
+      const finalMessage = messageData.join("\n");
+      setFormLoading(true);
+
+      const res = await fetch('/api/send-sms', {
+        method: 'POST',
+        body: JSON.stringify({ finalMessage }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (res.ok) {
+        console.log(res.json());
+        trackLead();
+        addToast({
+          title: "Thank you for registering, will we be in touch soon.",
+          variant: "solid",
+          radius: "none",
+          color: "primary"
+        });
+
+        setName("");
+        setEmail("");
+        setPhoneNumber("");
+        setSelectedPropertyType("");
+        setMessage("");
+        setFormLoading(false);
+      } else {
+        const data = await res.json();
+        console.log(data);
+        setFormLoading(false);
+      }
+    }
   }
 
   return (
@@ -134,7 +165,7 @@ const VisitBox = () => {
               </div>
             </section>
 
-            <Button color="primary" type="submit" className="uppercase text-[0.9rem] font-bold" radius="none">Submit Request</Button>
+            <Button color="primary" isLoading={formLoading} isDisabled={formLoading} type="submit" className="uppercase text-[0.9rem] font-bold" radius="none">Submit Request</Button>
           </form>
           <section className="flex flex-col gap-2 md-screen:hidden">
             {propertyList.map((property, index) => (
