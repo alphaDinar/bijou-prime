@@ -36,6 +36,8 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
+  const [formLoading, setFormLoading] = useState(false);
+
 
   const registerCustomer = async () => {
     const messageData = [
@@ -49,20 +51,34 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
     ];
 
     const finalMessage = messageData.join("\n");
+    setFormLoading(true);
 
-    sendSMS(adminContact, finalMessage);
-    addToast({
-      title: "Thank you for registering, will we be in touch soon.",
-      variant: "solid",
-      radius: "none",
-      color: "primary"
+    const res = await fetch('/api/send-sms', {
+      method: 'POST',
+      body: JSON.stringify({ finalMessage }),
+      headers: { 'Content-Type': 'application/json' },
     });
+    if (res.ok) {
+      console.log(res.json());
+      addToast({
+        title: "Thank you for registering, will we be in touch soon.",
+        variant: "solid",
+        radius: "none",
+        color: "primary"
+      });
 
-    setName("");
-    setEmail("");
-    setPhoneNumber("");
-    setSelectedPropertyType("");
-    setMessage("");
+      setName("");
+      setEmail("");
+      setPhoneNumber("");
+      setSelectedPropertyType("");
+      setMessage("");
+      setFormLoading(false);
+    } else {
+      const data = await res.json();
+      console.log(data);
+      setFormLoading(false);
+    }
+    // sendSMS(adminContact, finalMessage);
   }
 
   return (
@@ -120,7 +136,7 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
             </div>
           </section>
 
-          <Button color="primary" type="submit" className="uppercase text-[0.9rem] font-bold" radius="none">Submit Request</Button>
+          <Button color="primary" isLoading={formLoading} isDisabled={formLoading} type="submit" className="uppercase text-[0.9rem] font-bold" radius="none">Submit Request</Button>
         </form>
         <section className="flex flex-col gap-2 md-screen:hidden">
           {propertyList.map((property, index) => (
