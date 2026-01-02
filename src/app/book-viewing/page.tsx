@@ -51,47 +51,33 @@ const VisitBox = () => {
     ];
 
     const finalMessage = messageData.join("\n");
+    setFormLoading(true);
 
-    const requestViewing = async () => {
-      const messageData = [
-        "New Viewing Request",
-        "-----------------------------",
-        `Name : ${name}`,
-        `Email : ${email}`,
-        `Phone Number : ${phoneNumber}`,
-        `Interested In : ${selectedPropertyType ? selectedPropertyType : "general"}`,
-        `message : ${message}`,
-      ];
-
-      const finalMessage = messageData.join("\n");
-      setFormLoading(true);
-
-      const res = await fetch('/api/send-sms', {
-        method: 'POST',
-        body: JSON.stringify({ finalMessage }),
-        headers: { 'Content-Type': 'application/json' },
+    const res = await fetch('/api/send-sms', {
+      method: 'POST',
+      body: JSON.stringify({ finalMessage }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (res.ok) {
+      console.log(res.json());
+      trackLead();
+      addToast({
+        title: "Thank you for registering, will we be in touch soon.",
+        variant: "solid",
+        radius: "none",
+        color: "primary"
       });
-      if (res.ok) {
-        console.log(res.json());
-        trackLead();
-        addToast({
-          title: "Thank you for registering, will we be in touch soon.",
-          variant: "solid",
-          radius: "none",
-          color: "primary"
-        });
 
-        setName("");
-        setEmail("");
-        setPhoneNumber("");
-        setSelectedPropertyType("");
-        setMessage("");
-        setFormLoading(false);
-      } else {
-        const data = await res.json();
-        console.log(data);
-        setFormLoading(false);
-      }
+      setName("");
+      setEmail("");
+      setPhoneNumber("");
+      setSelectedPropertyType("");
+      setMessage("");
+      setFormLoading(false);
+    } else {
+      const data = await res.json();
+      console.log(data);
+      setFormLoading(false);
     }
   }
 
