@@ -67,7 +67,6 @@ const ContactBox: FC<ContactBoxProps> = ({ propertyType }) => {
           send_to: "AW-17199578214/GLI4CJmFudsbEOb4solA",
         });
       }
-      alert("sent");
       addToast({
         title: "Thank you for registering, will we be in touch soon.",
         variant: "solid",

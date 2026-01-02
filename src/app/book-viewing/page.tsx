@@ -60,7 +60,12 @@ const VisitBox = () => {
     });
     if (res.ok) {
       console.log(res.json());
-      trackLead();
+      // trackLead();
+       if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17199578214/GLI4CJmFudsbEOb4solA",
+        });
+      }
       addToast({
         title: "Thank you for registering, will we be in touch soon.",
         variant: "solid",
