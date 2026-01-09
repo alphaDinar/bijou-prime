@@ -88,8 +88,8 @@ const HeadBox = ({ children }: HeadBoxProps) => {
           <span className="text-3xl sm-screen:text-xl">Elegant Homes For Modern Living</span>
         </section>
 
-        <Button as={Link} href="/book-viewing" radius="none" variant="bordered" className="flex m-auto relative group border w-max text-secondary border-secondary sm-screen:mt-4 sm-screen:mx-0 sm-screen:px-6 sm-screen:py-3">
-          <span className="flex z-20 uppercase text-[0.8rem] font-extrabold group-hover:text-primary">Book a tour</span>
+        <Button as={Link} href="/#properties" radius="none" variant="bordered" className="flex m-auto relative group border w-max text-secondary border-secondary sm-screen:mt-4 sm-screen:mx-0 sm-screen:px-6 sm-screen:py-3">
+          <span className="flex z-20 uppercase text-[0.8rem] font-extrabold group-hover:text-primary">property list</span>
           <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-secondary group-hover:w-full transition-all"></div>
         </Button>
       </section>
