@@ -25,16 +25,8 @@ const PropertyModal = () => {
   }, []);
 
   useEffect(() => {
-    // const modalCheck = sessionStorage.getItem("bijouModal");
-    // if (!modalCheck) {
-    //   onOpen();
-    // }
     onOpen();
   }, [])
-
-  // const checkModal = () => {
-  //   sessionStorage.setItem("bijouModal", "checked");
-  // }
 
   const bijouModel = "/bijou.png";
   const foreclosedModel = "/foreclosed.png";
@@ -47,7 +39,6 @@ const PropertyModal = () => {
 
   // Set modal size based on window width
   const modalSize = windowWidth < 850 ? "xl" : "3xl";
-
 
 
   return (
