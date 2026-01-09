@@ -4,6 +4,7 @@ import { Modal, ModalContent, ModalBody, useDisclosure } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import Image from "next/image";
 import { MdClose } from "react-icons/md";
+import { createClick } from "@/src/external/clicks";
 
 const PropertyModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -39,8 +40,8 @@ const PropertyModal = () => {
   const foreclosedModel = "/foreclosed.png";
   const foreclosedPdf = "/properties_for_sale.pdf";
 
-  const openForeclosedProperties = () => {
-    // checkModal();
+  const openForeclosedProperties = async () => {
+    await createClick("foreclosed");
     window.open(foreclosedPdf, "_blank");
   };
 
@@ -67,7 +68,8 @@ const PropertyModal = () => {
                   <Image alt="" src={bijouModel} fill objectFit="contain" />
                 </div>
                 <Button
-                  onPress={() => {
+                  onPress={async () => {
+                    await createClick("bijou");
                     onClose();
                     // checkModal();
                   }}
@@ -99,7 +101,8 @@ const PropertyModal = () => {
                 </Button>
               </section>
 
-              <Button onPress={() => {
+              <Button onPress={async () => {
+                await createClick("closed");
                 onClose();
                 // checkModal();
               }} isIconOnly radius="full" color="danger" className="absolute top-0 right-0"><MdClose /></Button>
