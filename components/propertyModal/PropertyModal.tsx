@@ -35,6 +35,7 @@ const PropertyModal = () => {
   const openForeclosedProperties = async () => {
     await createClick("foreclosed");
     window.open(foreclosedPdf, "_blank");
+    // window.location.href = "/other-properties";
   };
 
   // Set modal size based on window width
