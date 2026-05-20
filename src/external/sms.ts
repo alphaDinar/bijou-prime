@@ -1,3 +1,4 @@
+import axios from "axios";
 
 
 const apiKey = process.env.NEXT_PUBLIC_ARKESEL_KEY;
