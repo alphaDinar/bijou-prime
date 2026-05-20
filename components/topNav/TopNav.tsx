@@ -23,7 +23,7 @@ const TopNav = () => {
 
   const navLinks = [
     { tag: "home", href: "/" },
-    { tag: "about us", href: "/about-us" },
+    // { tag: "about us", href: "/about-us" },
     { tag: "properties", href: "/#properties" },
     { tag: "gallery", href: "/gallery" },
     { tag: "contact us", href: "/#contact-us" },
@@ -67,8 +67,13 @@ const TopNav = () => {
           </Link>
         ))}
 
-        <Button as={Link} href="/book-viewing" radius="none" variant="bordered" className="flex relative group mx-4 border text-primary w-max-content border-primary sm-screen:text-white sm-screen:border-white sm-screen:mt-4 sm-screen:mx-0 sm-screen:px-6 sm-screen:py-3">
+
+        <Button as={Link} href="/book-viewing" radius="none" variant="bordered" className="hidden mob-screen:flex relative group mx-4 border text-primary w-max-content border-primary sm-screen:text-white sm-screen:border-white sm-screen:mt-4 sm-screen:mx-0 sm-screen:px-6 sm-screen:py-3">
           <span className="flex z-20 uppercase text-[0.8rem] font-extrabold group-hover:text-white">Book Viewing</span>
+          <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-primary group-hover:w-full transition-all"></div>
+        </Button>
+        <Button as={Link} href="/open-house" radius="none" variant="bordered" className="flex relative group mx-4 border text-primary w-max-content border-primary sm-screen:text-white sm-screen:border-white sm-screen:mt-4 sm-screen:mx-0 sm-screen:px-6 sm-screen:py-3">
+          <span className="flex z-20 uppercase text-[0.8rem] font-extrabold group-hover:text-white">Open House</span>
           <div className="bg-transparent w-1 h-full flex absolute left-0 group-hover:bg-primary group-hover:w-full transition-all"></div>
         </Button>
       </article>
