@@ -1,6 +1,5 @@
 "use client";
 import FooterBox from "@/components/footerBox/FooterBox";
-import AboutBox from "@/components/home/AboutBox";
 import BookBox from "@/components/home/BookBox";
 import PropertyBox from "@/components/home/PropertyBox";
 import { Button } from "@heroui/button";
@@ -9,7 +8,7 @@ import Link from "next/link";
 
 const AboutUs = () => {
     return (
-        <section className="grid gap-12 sm-screen:gap-10">
+        <section className="grid gap-12 sm-screen:gap-6">
             <section className="mb-5"></section>
             <section className="box grid grid-cols-2 gap-20 sm-screen:flex sm-screen:flex-col-reverse sm-screen:gap-8">
                 <section className="flex flex-col items-start gap-4 sm-screen:gap-1">
