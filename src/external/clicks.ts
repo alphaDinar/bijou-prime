@@ -13,11 +13,11 @@ export const genToken = (): string => {
   return token;
 };
 
-export const createClick = async (type: "bijou" | "foreclosed" | "closed") => {
-  const id = genToken();
-  const timestamp = Date.now();
-  await setDoc(doc(fireStoreDB, "Clicks/" + id), {
-    timestamp,
-    type
-  });
-}
+// export const createClick = async (type: "bijou" | "foreclosed" | "closed") => {
+//   const id = genToken();
+//   const timestamp = Date.now();
+//   await setDoc(doc(fireStoreDB, "Clicks/" + id), {
+//     timestamp,
+//     type
+//   });
+// }

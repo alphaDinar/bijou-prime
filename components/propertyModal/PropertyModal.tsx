@@ -4,11 +4,10 @@ import { Modal, ModalContent, ModalBody, useDisclosure } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import Image from "next/image";
 import { MdClose } from "react-icons/md";
-import { createClick } from "@/src/external/clicks";
+// import { createClick } from "@/src/external/clicks";
 
 const PropertyModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const PropertyModal = () => {
   const foreclosedPdf = "/properties_for_sale.pdf";
 
   const openForeclosedProperties = async () => {
-    await createClick("foreclosed");
+    // await createClick("foreclosed");
     window.open(foreclosedPdf, "_blank");
     // window.location.href = "/other-properties";
   };
@@ -61,7 +60,7 @@ const PropertyModal = () => {
                 </div>
                 <Button
                   onPress={async () => {
-                    await createClick("bijou");
+                    // await createClick("bijou");
                     onClose();
                     // checkModal();
                   }}
@@ -94,7 +93,7 @@ const PropertyModal = () => {
               </section>
 
               <Button onPress={async () => {
-                await createClick("closed");
+                // await createClick("closed");
                 onClose();
                 // checkModal();
               }} isIconOnly radius="full" color="danger" className="absolute top-0 right-0"><MdClose /></Button>
